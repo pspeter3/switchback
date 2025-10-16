@@ -14,8 +14,11 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "fix": "prettier --cache --write '*.{md,html}' 'src/**/*'",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "fix": "wireit",
+    "test": "wireit",
+    "fix:format": "wireit",
+    "test:format": "wireit",
+    "test:types": "wireit"
   },
   "dependencies": {
     "preact": "^10.27.2",
@@ -25,11 +28,46 @@
     "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.3.0",
     "typescript": "^5.9.3",
-    "vite": "^7.1.10"
+    "vite": "^7.1.10",
+    "wireit": "^0.14.12"
   },
   "prettier": {
     "plugins": [
       "prettier-plugin-organize-imports"
     ]
+  },
+  "wireit": {
+    "fix": {
+      "dependencies": [
+        "fix:format"
+      ]
+    },
+    "fix:format": {
+      "command": "prettier --cache --write '*.{html,md}' 'src/**/*'"
+    },
+    "test": {
+      "dependencies": [
+        "test:format",
+        "test:types"
+      ]
+    },
+    "test:format": {
+      "command": "prettier --cache --check '*.{html,md}' 'src/**/*'",
+      "files": [
+        "*.{html,md}",
+        "src/**/*"
+      ]
+    },
+    "test:types": {
+      "command": "tsc --noEmit",
+      "files": [
+        "tsconfig.json",
+        "src/**/*.{ts,tsx}"
+      ],
+      "output": [
+        "tsconfig.tsbuildinfo"
+      ],
+      "clean": false
+    }
   }
 }

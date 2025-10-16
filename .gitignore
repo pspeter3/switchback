@@ -1,2 +1,6 @@
+# Build
+.wireit/
+*.tsbuildinfo
+
 # Dependencies
 node_modules/
