@@ -3,5 +3,8 @@
 *.tsbuildinfo
 .eslintcache
 
+# Test
+coverage/
+
 # Dependencies
 node_modules/
