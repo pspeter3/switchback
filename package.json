@@ -17,7 +17,9 @@
     "fix": "wireit",
     "test": "wireit",
     "fix:format": "wireit",
+    "fix:lint": "wireit",
     "test:format": "wireit",
+    "test:lint": "wireit",
     "test:types": "wireit"
   },
   "dependencies": {
@@ -25,9 +27,14 @@
     "wouter-preact": "^3.7.1"
   },
   "devDependencies": {
+    "@eslint/js": "^9.37.0",
+    "eslint": "^9.37.0",
+    "eslint-plugin-react-hooks": "^7.0.0",
+    "globals": "^16.4.0",
     "prettier": "^3.6.2",
     "prettier-plugin-organize-imports": "^4.3.0",
     "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.1",
     "vite": "^7.1.10",
     "wireit": "^0.14.12"
   },
@@ -39,29 +46,44 @@
   "wireit": {
     "fix": {
       "dependencies": [
-        "fix:format"
+        "fix:format",
+        "fix:lint"
       ]
     },
     "fix:format": {
-      "command": "prettier --cache --write '*.{html,md}' 'src/**/*'"
+      "command": "prettier --cache --write '*.{html,md,ts}' 'src/**/*'"
+    },
+    "fix:lint": {
+      "command": "eslint --cache --fix --flag unstable_native_nodejs_ts_config 'src/**/*'"
     },
     "test": {
       "dependencies": [
         "test:format",
+        "test:lint",
         "test:types"
       ]
     },
     "test:format": {
-      "command": "prettier --cache --check '*.{html,md}' 'src/**/*'",
+      "command": "prettier --cache --check '*.{html,md,ts}' 'src/**/*'",
       "files": [
-        "*.{html,md}",
+        "*.{html,md,ts}",
         "src/**/*"
-      ]
+      ],
+      "output": []
+    },
+    "test:lint": {
+      "command": "eslint --cache --flag unstable_native_nodejs_ts_config 'src/**/*'",
+      "files": [
+        "eslint.config.ts",
+        "src/**/*.{ts,tsx}"
+      ],
+      "output": []
     },
     "test:types": {
       "command": "tsc --noEmit",
       "files": [
         "tsconfig.json",
+        "*.ts",
         "src/**/*.{ts,tsx}"
       ],
       "output": [

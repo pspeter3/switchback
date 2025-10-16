@@ -1,6 +1,7 @@
 # Build
 .wireit/
 *.tsbuildinfo
+.eslintcache
 
 # Dependencies
 node_modules/
