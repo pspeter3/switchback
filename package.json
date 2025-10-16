@@ -18,5 +18,8 @@
   "dependencies": {
     "preact": "^10.27.2",
     "wouter-preact": "^3.7.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
   }
 }
