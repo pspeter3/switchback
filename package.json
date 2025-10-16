@@ -14,5 +14,9 @@
   "license": "MIT",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "preact": "^10.27.2",
+    "wouter-preact": "^3.7.1"
   }
 }
