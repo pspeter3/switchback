@@ -60,7 +60,7 @@
       ]
     },
     "fix:format": {
-      "command": "prettier --cache --write '*.{html,md,ts}' 'src/**/*'"
+      "command": "prettier --cache --write '.github/workflows/*.yml' '*.{html,md,ts}' 'src/**/*'"
     },
     "fix:lint": {
       "command": "eslint --cache --fix --flag unstable_native_nodejs_ts_config 'src/**/*'"
@@ -73,8 +73,9 @@
       ]
     },
     "test:format": {
-      "command": "prettier --cache --check '*.{html,md,ts}' 'src/**/*'",
+      "command": "prettier --cache --check '.github/workflows/*.yml' '*.{html,md,ts}' 'src/**/*'",
       "files": [
+        ".github/workflows/*.yml",
         "*.{html,md,ts}",
         "src/**/*"
       ],
